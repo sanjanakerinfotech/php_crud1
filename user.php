@@ -82,28 +82,43 @@
         <!-- EOF User list -->
 
         
-        <!-- Pagination -->
-        <nav aria-label="Page navigation example">
+           <!-- Pagination -->
+           <nav aria-label="Page navigation example">
             <ul class="pagination">
-                <li class="page-item ">
-                    <a class="page-link" href=""  aria-label="Previous">
+                <?php
+                if($current_page == 1) {
+                    $disable = 'disabled';
+                } else {
+                    $disable = 'active';     
+                }
+                ?>
+                <li class="page-item <?php echo $disable?>">
+                    <a class="page-link" href="<?php echo $prev_page_url ?>"  aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Previous</span>
                     </a>
                 </li>
-               
-                <li class="page-item ">
-                    <a class="page-link" href="#">1</a>                    
+               <?php for ($i=1; $i <=$total_page ; $i++) {     
+                    $class='';
+                    if($current_page==$i){
+                        $class='active';
+                    }    
+               ?>
+                <li class="page-item <?php echo $class ?>">
+                    <a class="page-link" href="<?php echo get_site_url('user.php?page='.$i); ?>"><?php echo $i; ?></a>                    
                 </li>
-                <li class="page-item ">
-                    <a class="page-link" href="#">2</a>                    
-                </li>
-                <li class="page-item ">
-                    <a class="page-link" href="#">3</a>                    
-                </li>
+               <?php } ?>
                 
-                <li class="page-item ">
-                    <a class="page-link" href=""  aria-label="Next">
+               <?php
+               if($current_page >= $total_page) {
+                $disable_next = 'disable';
+                } else {
+                $disable_next = 'active';
+            }
+            
+                ?>
+                <li class="page-item <?php echo$disable_next?>">
+                    <a class="page-link" href="<?php echo $next_page_url ?>"  aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>
                     </a>
@@ -111,8 +126,6 @@
             </ul>
         </nav>
         <!-- EOF Pagination -->
-      
-
     </div>
 </div>
 
