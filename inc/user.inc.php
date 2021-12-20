@@ -70,7 +70,7 @@ if (isset($_GET['action'])) {
 
 }
 else {
-    $limit = 2;
+    $limit = 4;
     $offset = 0;
     $sql = "SELECT COUNT(*) AS total FROM `users`";
     $data = mysqli_query($con,$sql);
